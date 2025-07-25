@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dylan & Katelyn's Law Study Dashboard</title>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="alternate icon" href="favicon.ico">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Early 2000s Law Office Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Times+New+Roman&family=Georgia:wght@400;700&family=Courier+New&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome for Professional Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- Custom Retro Law Office Styling -->
+    <style>
+        :root {
+            --law-burgundy: #800020;
+            --law-gold: #DAA520;
+            --law-navy: #1e3a8a;
+            --law-cream: #FDF6E3;
+            --law-mahogany: #C04000;
+            --law-forest: #355E3B;
+        }
+        
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            background: linear-gradient(135deg, #f5f5dc 0%, #e6ddd4 100%);
+            background-attachment: fixed;
+        }
+        
+        .retro-border {
+            border: 3px ridge #8B4513;
+            box-shadow: inset 0 0 10px rgba(139, 69, 19, 0.2);
+        }
+        
+        .wood-panel {
+            background: linear-gradient(180deg, #D2B48C 0%, #8B7355 50%, #654321 100%);
+            border: 2px inset #8B4513;
+        }
+        
+        .leather-texture {
+            background: radial-gradient(ellipse at center, #800020 0%, #660000 100%);
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
+        }
+        
+        .brass-nameplate {
+            background: linear-gradient(145deg, #DAA520, #B8860B);
+            border: 2px outset #DAA520;
+            box-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .legal-paper {
+            background: #FFFFFF;
+            border: 1px solid #E5E7EB;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+        
+        .typewriter-font {
+            font-family: 'Courier New', monospace;
+            letter-spacing: 0.5px;
+        }
+        
+        .retro-button {
+            background: linear-gradient(145deg, #e6e6e6, #cccccc);
+            border: 2px outset #999;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .retro-button:hover {
+            background: linear-gradient(145deg, #f0f0f0, #d9d9d9);
+            border: 2px outset #aaa;
+        }
+        
+        .retro-button:active {
+            border: 2px inset #999;
+            background: linear-gradient(145deg, #cccccc, #e6e6e6);
+        }
+        
+        .law-book-spine {
+            background: linear-gradient(90deg, var(--law-burgundy) 0%, #600015 50%, var(--law-burgundy) 100%);
+            border-right: 3px ridge #8B4513;
+            box-shadow: 2px 0 5px rgba(0,0,0,0.3);
+        }
+        
+        .parchment {
+            background: #F9FAFB;
+            border: 1px solid #E5E7EB;
+        }
+    </style>
+    
+    <!-- Tailwind Custom Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'law-burgundy': '#800020',
+                        'law-gold': '#DAA520',
+                        'law-navy': '#1e3a8a',
+                        'law-cream': '#FDF6E3',
+                        'law-mahogany': '#C04000',
+                        'law-forest': '#355E3B'
+                    },
+                    fontFamily: {
+                        'serif': ['Georgia', 'Times New Roman', 'serif'],
+                        'mono': ['Courier New', 'monospace']
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="min-h-screen">
+    <!-- Main Container -->
+    <div class="min-h-screen bg-gradient-to-br from-yellow-50 to-amber-100">
+        
+        <!-- Header - Retro Law Office Nameplate -->
+        <header class="wood-panel p-6 mb-8 shadow-lg">
+            <div class="max-w-7xl mx-auto flex justify-between items-center">
+                <div class="brass-nameplate px-8 py-4 rounded-lg">
+                    <h1 class="text-3xl font-bold text-law-navy flex items-center gap-3">
+                        <i class="fas fa-balance-scale text-law-gold"></i>
+                        <span class="font-serif">Law Study Partnership</span>
+                    </h1>
+                    <p class="text-law-mahogany text-sm font-semibold mt-1 typewriter-font">Dylan & Katelyn's Legal Education Portal</p>
+                </div>
+                
+                <!-- User Selection -->
+                <div class="flex gap-4">
+                    <button id="dylan-btn" class="retro-button px-6 py-3 rounded-lg text-law-navy active:bg-law-gold transition-all duration-200" data-user="dylan">
+                        <div class="flex items-center gap-2">
+                            <div class="w-8 h-8 bg-law-navy text-white rounded-full flex items-center justify-center font-bold">D</div>
+                            <span class="font-semibold">Dylan</span>
+                        </div>
+                    </button>
+                    <button id="katelyn-btn" class="retro-button px-6 py-3 rounded-lg text-law-navy hover:bg-law-gold transition-all duration-200" data-user="katelyn">
+                        <div class="flex items-center gap-2">
+                            <div class="w-8 h-8 bg-law-burgundy text-white rounded-full flex items-center justify-center font-bold">K</div>
+                            <span class="font-semibold">Katelyn</span>
+                        </div>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Partnership Dashboard - Law Firm Letterhead Style -->
+        <div class="max-w-7xl mx-auto mb-8 px-6">
+            <div class="leather-texture p-8 rounded-lg shadow-2xl text-white">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
+                    
+                    <!-- Dylan's Stats -->
+                    <div class="parchment p-6 rounded-lg text-law-navy retro-border">
+                        <div class="flex items-center gap-4 mb-4">
+                            <div class="w-12 h-12 bg-law-navy text-white rounded-full flex items-center justify-center font-bold text-lg">D</div>
+                            <div>
+                                <h3 class="text-xl font-bold font-serif">Dylan</h3>
+                                <p class="text-sm text-law-mahogany typewriter-font">Partner</p>
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="text-center">
+                                <div class="text-2xl font-bold text-law-burgundy" id="dylan-points">0</div>
+                                <div class="text-xs uppercase text-law-navy font-semibold">Points</div>
+                            </div>
+                            <div class="text-center">
+                                <div class="text-2xl font-bold text-law-burgundy" id="dylan-streak">0</div>
+                                <div class="text-xs uppercase text-law-navy font-semibold">Day Streak</div>
+                            </div>
+                        </div>
+                        <div class="mt-4 pt-4 border-t border-law-navy/20">
+                            <div class="flex items-center gap-2">
+                                <i class="fas fa-circle text-xs" id="dylan-status-icon"></i>
+                                <span class="text-sm font-semibold" id="dylan-status">Offline</span>
+                            </div>
+                            <div class="text-xs text-law-mahogany mt-1 typewriter-font" id="dylan-activity">Last studied: Never</div>
+                        </div>
+                    </div>
+
+                    <!-- VS Indicator -->
+                    <div class="text-center">
+                        <div class="brass-nameplate px-6 py-3 rounded-lg mx-auto w-fit">
+                            <i class="fas fa-handshake text-2xl text-law-navy"></i>
+                            <div class="text-lg font-bold text-law-navy mt-2 font-serif">STUDY PARTNERS</div>
+                        </div>
+                    </div>
+
+                    <!-- Katelyn's Stats -->
+                    <div class="parchment p-6 rounded-lg text-law-navy retro-border">
+                        <div class="flex items-center gap-4 mb-4">
+                            <div class="w-12 h-12 bg-law-burgundy text-white rounded-full flex items-center justify-center font-bold text-lg">K</div>
+                            <div>
+                                <h3 class="text-xl font-bold font-serif">Katelyn</h3>
+                                <p class="text-sm text-law-mahogany typewriter-font">Partner</p>
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="text-center">
+                                <div class="text-2xl font-bold text-law-burgundy" id="katelyn-points">0</div>
+                                <div class="text-xs uppercase text-law-navy font-semibold">Points</div>
+                            </div>
+                            <div class="text-center">
+                                <div class="text-2xl font-bold text-law-burgundy" id="katelyn-streak">0</div>
+                                <div class="text-xs uppercase text-law-navy font-semibold">Day Streak</div>
+                            </div>
+                        </div>
+                        <div class="mt-4 pt-4 border-t border-law-navy/20">
+                            <div class="flex items-center gap-2">
+                                <i class="fas fa-circle text-xs" id="katelyn-status-icon"></i>
+                                <span class="text-sm font-semibold" id="katelyn-status">Offline</span>
+                            </div>
+                            <div class="text-xs text-law-mahogany mt-1 typewriter-font" id="katelyn-activity">Last studied: Never</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quick Actions - Retro Law Office Buttons -->
+        <div class="max-w-7xl mx-auto mb-8 px-6">
+            <div class="flex justify-center gap-6">
+                <button class="retro-button px-8 py-4 rounded-lg text-law-navy hover:bg-law-gold transition-all duration-200 shadow-lg" id="start-study-btn">
+                    <div class="flex items-center gap-3">
+                        <i class="fas fa-play-circle text-xl"></i>
+                        <span class="font-bold text-lg">START STUDY SESSION</span>
+                    </div>
+                </button>
+                <button class="retro-button px-8 py-4 rounded-lg text-law-navy hover:bg-law-gold transition-all duration-200 shadow-lg" id="study-together-btn">
+                    <div class="flex items-center gap-3">
+                        <i class="fas fa-users text-xl"></i>
+                        <span class="font-bold text-lg">STUDY TOGETHER</span>
+                    </div>
+                </button>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="max-w-7xl mx-auto px-6">
+            <!-- Navigation Tabs - Law Book Spines -->
+            <nav class="mb-8">
+                <div class="flex justify-center gap-2">
+                    <button class="law-book-spine px-6 py-4 text-white font-bold text-sm hover:shadow-lg transition-all duration-200" data-tab="subjects">
+                        <div class="flex flex-col items-center gap-2">
+                            <i class="fas fa-book text-law-gold"></i>
+                            <span class="transform -rotate-0">SUBJECTS</span>
+                        </div>
+                    </button>
+                    <button class="law-book-spine px-6 py-4 text-white font-bold text-sm shadow-lg bg-law-navy" data-tab="tree">
+                        <div class="flex flex-col items-center gap-2">
+                            <i class="fas fa-sitemap text-law-gold"></i>
+                            <span class="transform -rotate-0">LAW TREE</span>
+                        </div>
+                    </button>
+                    <button class="law-book-spine px-6 py-4 text-white font-bold text-sm hover:shadow-lg transition-all duration-200" data-tab="progress">
+                        <div class="flex flex-col items-center gap-2">
+                            <i class="fas fa-chart-line text-law-gold"></i>
+                            <span class="transform -rotate-0">PROGRESS</span>
+                        </div>
+                    </button>
+                    <button class="law-book-spine px-6 py-4 text-white font-bold text-sm hover:shadow-lg transition-all duration-200" data-tab="achievements">
+                        <div class="flex flex-col items-center gap-2">
+                            <i class="fas fa-award text-law-gold"></i>
+                            <span class="transform -rotate-0">AWARDS</span>
+                        </div>
+                    </button>
+                </div>
+            </nav>
+
+            <!-- Subjects Tab - Law Case Files -->
+            <div class="hidden" id="subjects-tab">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Contracts -->
+                    <div class="legal-paper p-8 rounded-lg shadow-lg retro-border" data-subject="contracts">
+                        <div class="mb-6">
+                            <div class="flex items-center gap-3 mb-4">
+                                <i class="fas fa-file-contract text-3xl text-law-navy"></i>
+                                <h3 class="text-2xl font-bold font-serif text-law-navy">Contracts</h3>
+                            </div>
+                            <div class="bg-gray-200 rounded-full h-3 mb-2">
+                                <div class="bg-law-burgundy h-3 rounded-full transition-all duration-300" style="width: 0%" id="contracts-progress-bar"></div>
+                            </div>
+                            <span class="text-sm font-semibold text-law-mahogany typewriter-font" id="contracts-progress-text">0% Complete</span>
+                        </div>
+                        <div class="grid grid-cols-2 gap-4 mb-6">
+                            <div class="text-center p-3 bg-white rounded border-2 border-law-navy">
+                                <div class="text-2xl font-bold text-law-burgundy" id="contracts-mastered">0</div>
+                                <div class="text-xs uppercase text-law-navy font-semibold">Mastered</div>
+                            </div>
+                            <div class="text-center p-3 bg-white rounded border-2 border-law-navy">
+                                <div class="text-2xl font-bold text-law-burgundy" id="contracts-total">50</div>
+                                <div class="text-xs uppercase text-law-navy font-semibold">Total Topics</div>
+                            </div>
+                        </div>
+                        <button class="retro-button w-full py-3 rounded-lg text-law-navy hover:bg-law-gold transition-all duration-200" data-subject="contracts">
+                            <i class="fas fa-graduation-cap mr-2"></i>
+                            STUDY CONTRACTS
+                        </button>
+                    </div>
+
+                    <!-- Torts -->
+                    <div class="legal-paper p-8 rounded-lg shadow-lg retro-border" data-subject="torts">
+                        <div class="mb-6">
+                            <div class="flex items-center gap-3 mb-4">
+                                <i class="fas fa-gavel text-3xl text-law-navy"></i>
+                                <h3 class="text-2xl font-bold font-serif text-law-navy">Torts</h3>
+                            </div>
+                            <div class="bg-gray-200 rounded-full h-3 mb-2">
+                                <div class="bg-law-burgundy h-3 rounded-full transition-all duration-300" style="width: 0%" id="torts-progress-bar"></div>
+                            </div>
+                            <span class="text-sm font-semibold text-law-mahogany typewriter-font" id="torts-progress-text">0% Complete</span>
+                        </div>
+                        <div class="grid grid-cols-2 gap-4 mb-6">
+                            <div class="text-center p-3 bg-white rounded border-2 border-law-navy">
+                                <div class="text-2xl font-bold text-law-burgundy" id="torts-mastered">0</div>
+                                <div class="text-xs uppercase text-law-navy font-semibold">Mastered</div>
+                            </div>
+                            <div class="text-center p-3 bg-white rounded border-2 border-law-navy">
+                                <div class="text-2xl font-bold text-law-burgundy" id="torts-total">60</div>
+                                <div class="text-xs uppercase text-law-navy font-semibold">Total Topics</div>
+                            </div>
+                        </div>
+                        <button class="retro-button w-full py-3 rounded-lg text-law-navy hover:bg-law-gold transition-all duration-200" data-subject="torts">
+                            <i class="fas fa-graduation-cap mr-2"></i>
+                            STUDY TORTS
+                        </button>
+                    </div>
+
+                    <!-- Criminal Law -->
+                    <div class="legal-paper p-8 rounded-lg shadow-lg retro-border" data-subject="criminal">
+                        <div class="mb-6">
+                            <div class="flex items-center gap-3 mb-4">
+                                <i class="fas fa-university text-3xl text-law-navy"></i>
+                                <h3 class="text-2xl font-bold font-serif text-law-navy">Criminal Law</h3>
+                            </div>
+                            <div class="bg-gray-200 rounded-full h-3 mb-2">
+                                <div class="bg-law-burgundy h-3 rounded-full transition-all duration-300" style="width: 0%" id="criminal-progress-bar"></div>
+                            </div>
+                            <span class="text-sm font-semibold text-law-mahogany typewriter-font" id="criminal-progress-text">0% Complete</span>
+                        </div>
+                        <div class="grid grid-cols-2 gap-4 mb-6">
+                            <div class="text-center p-3 bg-white rounded border-2 border-law-navy">
+                                <div class="text-2xl font-bold text-law-burgundy" id="criminal-mastered">0</div>
+                                <div class="text-xs uppercase text-law-navy font-semibold">Mastered</div>
+                            </div>
+                            <div class="text-center p-3 bg-white rounded border-2 border-law-navy">
+                                <div class="text-2xl font-bold text-law-burgundy" id="criminal-total">45</div>
+                                <div class="text-xs uppercase text-law-navy font-semibold">Total Topics</div>
+                            </div>
+                        </div>
+                        <button class="retro-button w-full py-3 rounded-lg text-law-navy hover:bg-law-gold transition-all duration-200" data-subject="criminal">
+                            <i class="fas fa-graduation-cap mr-2"></i>
+                            STUDY CRIMINAL LAW
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tree Tab - Law Library Archive -->
+            <div class="block" id="tree-tab">
+                <!-- Tree content will be populated by JavaScript with Tailwind classes -->
+            </div>
+
+            <!-- Progress Tab - Legal Case Reports -->
+            <div class="hidden" id="progress-tab">
+                <div class="legal-paper p-8 rounded-lg shadow-lg retro-border">
+                    <div class="text-center mb-8">
+                        <i class="fas fa-chart-line text-4xl text-law-navy mb-4"></i>
+                        <h2 class="text-3xl font-bold font-serif text-law-navy">Study Progress Overview</h2>
+                        <p class="text-law-mahogany typewriter-font">Academic Performance Report</p>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                        <!-- Weekly Goals -->
+                        <div class="parchment p-6 rounded-lg retro-border">
+                            <div class="flex items-center gap-3 mb-4">
+                                <i class="fas fa-calendar-check text-2xl text-law-navy"></i>
+                                <h3 class="text-xl font-bold font-serif text-law-navy">Week 1 Goals (Current)</h3>
+                            </div>
+                            <div id="week1-goals" class="space-y-2">
+                                <!-- Goals will be populated by JavaScript -->
+                            </div>
+                        </div>
+                        
+                        <!-- Study Calendar -->
+                        <div class="parchment p-6 rounded-lg retro-border">
+                            <div class="flex items-center gap-3 mb-4">
+                                <i class="fas fa-calendar-alt text-2xl text-law-navy"></i>
+                                <h3 class="text-xl font-bold font-serif text-law-navy">Study Activity Calendar</h3>
+                            </div>
+                            <div id="study-calendar" class="grid grid-cols-7 gap-2">
+                                <!-- Calendar will be populated by JavaScript -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Achievements Tab - Award Certificates -->
+            <div class="hidden" id="achievements-tab">
+                <div class="legal-paper p-8 rounded-lg shadow-lg retro-border">
+                    <div class="text-center mb-8">
+                        <i class="fas fa-award text-4xl text-law-gold mb-4"></i>
+                        <h2 class="text-3xl font-bold font-serif text-law-navy">Achievements & Recognition</h2>
+                        <p class="text-law-mahogany typewriter-font">Academic Honors & Distinctions</p>
+                    </div>
+                    <div id="achievements-list" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <!-- Achievements will be populated by JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Study Modal - Retro Law Office Style -->
+    <div class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden items-center justify-center" id="study-modal">
+        <div class="legal-paper max-w-4xl w-full mx-4 max-h-[90vh] overflow-y-auto rounded-lg shadow-2xl retro-border">
+            <div class="wood-panel p-6 rounded-t-lg">
+                <div class="flex justify-between items-center">
+                    <h2 class="text-2xl font-bold font-serif text-white" id="study-modal-title">Study Session</h2>
+                    <button class="text-white text-3xl hover:text-law-gold transition-colors duration-200" id="close-study-modal">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="p-8" id="study-modal-body">
+                <!-- Study content will be populated here -->
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Scripts -->
+    <script src="js/law-content.js"></script>
+    <script src="js/turso-sync.js"></script>
+    <script src="js/partnership.js"></script>
+    <script src="js/gamification.js"></script>
+    <script src="js/irac-practice.js"></script>
+    <script src="js/law-tree.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
