@@ -1,0 +1,801 @@
+/* Educational IRAC Practice Mode CSS */
+/* Enhanced for focused legal writing practice with modern design */
+
+.irac-selection {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.selection-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.selection-header h3 {
+    font-size: var(--font-size-2xl);
+    font-weight: 800;
+    background: var(--primary-gradient);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: var(--gray-800); /* Fallback */
+    margin-bottom: var(--space-4);
+    
+    /* Educational writing emphasis */
+    &::before {
+        content: '📝 ';
+        -webkit-text-fill-color: initial;
+        margin-right: var(--space-2);
+    }
+}
+
+.selection-header p {
+    color: var(--gray-600);
+    font-size: 0.95rem;
+}
+
+/* Hypo List */
+.hypo-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.hypo-item {
+    background: var(--card-gradient);
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-radius: var(--border-radius-lg);
+    padding: var(--space-8);
+    cursor: pointer;
+    transition: all var(--transition-base);
+    position: relative;
+    overflow: hidden;
+    
+    /* Educational hypo enhancement */
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -4px;
+        width: 4px;
+        height: 100%;
+        background: var(--primary-gradient);
+        opacity: 0;
+        transition: opacity var(--transition-base);
+    }
+    
+    &:hover::before {
+        opacity: 1;
+    }
+}
+
+.hypo-item:hover {
+    border-color: var(--primary-color);
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: var(--shadow-xl);
+    background: rgba(255, 255, 255, 0.95);
+}
+
+.hypo-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.hypo-header h4 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--gray-800);
+    margin: 0;
+}
+
+.hypo-meta {
+    display: flex;
+    gap: 15px;
+    font-size: 0.85rem;
+    color: var(--gray-500);
+}
+
+.time-limit,
+.topic-count {
+    background: var(--gray-100);
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-weight: 500;
+}
+
+.hypo-preview {
+    font-size: 0.9rem;
+    color: var(--gray-700);
+    line-height: 1.5;
+    margin-bottom: 15px;
+    background: var(--gray-50);
+    padding: 15px;
+    border-radius: 8px;
+    border-left: 4px solid var(--primary-color);
+}
+
+.hypo-question {
+    font-size: 0.9rem;
+    color: var(--gray-800);
+    background: #fff3cd;
+    padding: 12px;
+    border-radius: 6px;
+    border-left: 4px solid #f59e0b;
+}
+
+/* IRAC Tips */
+.irac-tips {
+    background: var(--gray-50);
+    border: 2px solid var(--gray-200);
+    border-radius: var(--border-radius);
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.irac-tips h4 {
+    color: var(--primary-color);
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+.irac-tips ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.irac-tips li {
+    padding: 8px 0;
+    font-size: 0.9rem;
+    line-height: 1.4;
+    color: var(--gray-700);
+}
+
+.irac-tips li strong {
+    color: var(--primary-color);
+}
+
+/* Practice Interface */
+.irac-practice-interface {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.practice-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--card-gradient);
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-radius: var(--border-radius-lg);
+    padding: var(--space-8);
+    margin-bottom: var(--space-8);
+    box-shadow: var(--shadow-lg);
+    position: relative;
+    
+    /* Educational practice header */
+    &::before {
+        content: '⚖️';
+        position: absolute;
+        top: var(--space-4);
+        right: var(--space-6);
+        font-size: var(--font-size-xl);
+        opacity: 0.2;
+    }
+}
+
+.timer-section {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.timer-display {
+    text-align: center;
+}
+
+.timer-label {
+    display: block;
+    font-size: 0.8rem;
+    color: var(--gray-500);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 5px;
+}
+
+.timer-value {
+    font-family: 'SF Mono', 'Monaco', 'Courier New', monospace;
+    font-size: var(--font-size-3xl);
+    font-weight: 800;
+    color: var(--primary-color);
+    background: white;
+    padding: var(--space-4) var(--space-6);
+    border-radius: var(--border-radius);
+    border: 3px solid var(--primary-color);
+    min-width: 140px;
+    display: inline-block;
+    box-shadow: var(--shadow-md);
+    position: relative;
+    
+    /* Enhanced timer styling */
+    &::before {
+        content: '⏱️';
+        position: absolute;
+        top: -8px;
+        left: -8px;
+        font-size: var(--font-size-sm);
+        background: var(--primary-color);
+        color: white;
+        padding: var(--space-1);
+        border-radius: 50%;
+        width: 24px;
+        height: 24px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+.timer-controls {
+    display: flex;
+    gap: 10px;
+}
+
+.timer-btn {
+    padding: 8px 12px;
+    border: 1px solid var(--gray-300);
+    border-radius: 6px;
+    background: white;
+    color: var(--gray-600);
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.timer-btn:hover {
+    background: var(--gray-100);
+    border-color: var(--gray-400);
+}
+
+.practice-controls {
+    display: flex;
+    gap: 10px;
+}
+
+.control-btn {
+    padding: 10px 15px;
+    border: 2px solid var(--gray-300);
+    border-radius: var(--border-radius);
+    background: white;
+    color: var(--gray-700);
+    font-size: 0.85rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.control-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
+}
+
+.control-btn.danger {
+    border-color: var(--danger-color);
+    color: var(--danger-color);
+}
+
+.control-btn.danger:hover {
+    background: var(--danger-color);
+    color: white;
+}
+
+/* Hypothetical Section */
+.hypothetical-section {
+    background: var(--card-gradient);
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-radius: var(--border-radius-lg);
+    margin-bottom: var(--space-8);
+    box-shadow: var(--shadow-md);
+    position: relative;
+    
+    /* Educational hypothetical styling */
+    &::before {
+        content: '📜';
+        position: absolute;
+        top: var(--space-4);
+        right: var(--space-6);
+        font-size: var(--font-size-lg);
+        opacity: 0.3;
+    }
+}
+
+.hypo-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    background: var(--gray-50);
+    border-bottom: 1px solid var(--gray-200);
+    border-radius: var(--border-radius) var(--border-radius) 0 0;
+}
+
+.hypo-header h4 {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--gray-800);
+}
+
+.toggle-btn {
+    padding: 6px 12px;
+    border: 1px solid var(--gray-300);
+    border-radius: 6px;
+    background: white;
+    color: var(--gray-600);
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.toggle-btn:hover {
+    background: var(--gray-100);
+    border-color: var(--gray-400);
+}
+
+.hypo-content {
+    padding: 20px;
+}
+
+.hypo-content p {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: var(--gray-700);
+    margin-bottom: 20px;
+}
+
+.question-box {
+    background: #fff3cd;
+    border: 1px solid #fbbf24;
+    border-radius: 8px;
+    padding: 15px;
+    font-size: 0.95rem;
+    color: var(--gray-800);
+}
+
+/* Writing Section */
+.writing-section {
+    background: var(--card-gradient);
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-radius: var(--border-radius-lg);
+    margin-bottom: var(--space-8);
+    box-shadow: var(--shadow-lg);
+    position: relative;
+    
+    /* Educational writing enhancement */
+    &::before {
+        content: '✍️';
+        position: absolute;
+        top: var(--space-4);
+        right: var(--space-6);
+        font-size: var(--font-size-lg);
+        opacity: 0.3;
+    }
+}
+
+.writing-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    background: var(--gray-50);
+    border-bottom: 1px solid var(--gray-200);
+}
+
+.writing-header h4 {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--gray-800);
+}
+
+.writing-stats {
+    display: flex;
+    gap: 20px;
+    font-size: 0.85rem;
+}
+
+.auto-save-status {
+    color: var(--success-color);
+    font-weight: 500;
+}
+
+.essay-textarea {
+    width: 100%;
+    min-height: 450px;
+    border: none;
+    padding: var(--space-8);
+    font-family: 'Charter', 'Georgia', serif;
+    font-size: var(--font-size-lg);
+    line-height: 1.7;
+    color: var(--gray-800);
+    resize: vertical;
+    background: rgba(255, 255, 255, 0.98);
+    border-radius: 0 0 var(--border-radius-lg) var(--border-radius-lg);
+    
+    /* Enhanced writing experience */
+    transition: background-color var(--transition-base);
+    
+    &:focus {
+        outline: none;
+        background: #fefefe;
+        box-shadow: inset 0 0 0 2px rgba(59, 130, 246, 0.1);
+    }
+    
+    /* Writing focus mode */
+    &::placeholder {
+        color: var(--gray-400);
+        font-style: italic;
+        font-size: var(--font-size-base);
+    }
+}
+
+.essay-textarea:focus {
+    outline: none;
+    background: #fefefe;
+}
+
+/* IRAC Guide */
+.irac-guide,
+.hints-section {
+    background: var(--card-gradient);
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-radius: var(--border-radius-lg);
+    margin-bottom: var(--space-8);
+    padding: var(--space-8);
+    box-shadow: var(--shadow-md);
+    position: relative;
+    
+    /* Educational guide enhancement */
+    &::before {
+        content: '💡';
+        position: absolute;
+        top: var(--space-4);
+        right: var(--space-6);
+        font-size: var(--font-size-lg);
+        opacity: 0.3;
+    }
+}
+
+.irac-guide h4,
+.hints-section h4 {
+    color: var(--primary-color);
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+.guide-sections {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.guide-section {
+    background: rgba(255, 255, 255, 0.8);
+    border: 2px solid rgba(59, 130, 246, 0.1);
+    border-radius: var(--border-radius);
+    padding: var(--space-6);
+    transition: all var(--transition-base);
+    
+    /* Educational guide section enhancement */
+    &:hover {
+        background: rgba(255, 255, 255, 0.95);
+        border-color: rgba(59, 130, 246, 0.2);
+        transform: translateY(-1px);
+        box-shadow: var(--shadow-sm);
+    }
+}
+
+.guide-section h5 {
+    color: var(--primary-color);
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.guide-section p {
+    font-size: 0.85rem;
+    color: var(--gray-700);
+    line-height: 1.5;
+    margin-bottom: 8px;
+}
+
+.guide-section em {
+    font-size: 0.8rem;
+    color: var(--gray-500);
+    display: block;
+    margin-top: 5px;
+}
+
+/* Hints */
+.hints-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.hints-list li {
+    background: var(--gray-50);
+    border-left: 4px solid var(--primary-color);
+    margin-bottom: 10px;
+    padding: 12px 15px;
+    border-radius: 0 6px 6px 0;
+    font-size: 0.9rem;
+    color: var(--gray-700);
+}
+
+/* Session Summary */
+.irac-session-summary {
+    max-width: 700px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.summary-header {
+    margin-bottom: 30px;
+}
+
+.summary-header h3 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--gray-800);
+    margin-bottom: 10px;
+}
+
+.summary-subtitle {
+    color: var(--gray-600);
+    font-size: 0.95rem;
+}
+
+.summary-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.summary-stat {
+    background: var(--card-gradient);
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-radius: var(--border-radius-lg);
+    padding: var(--space-8);
+    text-align: center;
+    transition: all var(--transition-base);
+    position: relative;
+    
+    /* Educational stat enhancement */
+    &:hover {
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-lg);
+        border-color: rgba(59, 130, 246, 0.3);
+    }
+}
+
+.summary-stat .stat-icon {
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+.summary-stat .stat-value {
+    display: block;
+    font-size: var(--font-size-3xl);
+    font-weight: 800;
+    background: var(--primary-gradient);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: var(--primary-color); /* Fallback */
+    margin-bottom: var(--space-2);
+    
+    /* Educational number styling */
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.summary-stat .stat-label {
+    font-size: 0.8rem;
+    color: var(--gray-500);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Essay Preview */
+.essay-preview {
+    background: var(--gray-50);
+    border: 2px solid var(--gray-200);
+    border-radius: var(--border-radius);
+    padding: 20px;
+    margin-bottom: 25px;
+    text-align: left;
+}
+
+.essay-preview h4 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--gray-800);
+    margin-bottom: 15px;
+}
+
+.essay-content {
+    font-family: 'Georgia', serif;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: var(--gray-700);
+    background: white;
+    padding: 15px;
+    border-radius: 6px;
+    border-left: 4px solid var(--primary-color);
+    max-height: 150px;
+    overflow-y: auto;
+}
+
+/* Writing Feedback */
+.writing-feedback {
+    background: white;
+    border: 2px solid var(--gray-200);
+    border-radius: var(--border-radius);
+    padding: 20px;
+    margin-bottom: 25px;
+    text-align: left;
+}
+
+.writing-feedback h4 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--gray-800);
+    margin-bottom: 15px;
+}
+
+.feedback-items {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.feedback-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    border-radius: 6px;
+    font-size: 0.9rem;
+}
+
+.feedback-item.positive {
+    background: rgba(16, 185, 129, 0.1);
+    color: var(--success-color);
+}
+
+.feedback-item.neutral {
+    background: rgba(245, 158, 11, 0.1);
+    color: var(--warning-color);
+}
+
+.feedback-icon {
+    font-size: 1.1rem;
+}
+
+/* Next Steps */
+.next-steps {
+    background: white;
+    border: 2px solid var(--gray-200);
+    border-radius: var(--border-radius);
+    padding: 20px;
+    margin-bottom: 25px;
+    text-align: left;
+}
+
+.next-steps h4 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--gray-800);
+    margin-bottom: 15px;
+}
+
+.next-steps ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.next-steps li {
+    padding: 8px 0;
+    padding-left: 20px;
+    position: relative;
+    font-size: 0.9rem;
+    color: var(--gray-700);
+    line-height: 1.5;
+}
+
+.next-steps li::before {
+    content: '💡';
+    position: absolute;
+    left: 0;
+}
+
+/* Selection Actions */
+.selection-actions,
+.summary-actions {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .practice-header {
+        flex-direction: column;
+        gap: 20px;
+    }
+    
+    .timer-section {
+        flex-direction: column;
+        text-align: center;
+        gap: 15px;
+    }
+    
+    .practice-controls {
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+    
+    .guide-sections {
+        grid-template-columns: 1fr;
+    }
+    
+    .summary-stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .hypo-header {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+    }
+    
+    .writing-header {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .irac-practice-interface,
+    .irac-selection {
+        padding: 10px;
+    }
+    
+    .timer-value {
+        font-size: 1.5rem;
+        padding: 8px 12px;
+    }
+    
+    .essay-textarea {
+        min-height: 300px;
+        padding: 15px;
+        font-size: 0.95rem;
+    }
+    
+    .summary-stats-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .summary-actions {
+        flex-direction: column;
+    }
+}

@@ -1,0 +1,29 @@
+{
+  "name": "dylan-katelyn-law-study",
+  "version": "1.0.0",
+  "description": "Collaborative law study tool for Dylan & Katelyn",
+  "main": "index.html",
+  "scripts": {
+    "start": "python3 -m http.server 3030",
+    "dev": "node dev-server.js",
+    "dev:background": "nohup node dev-server.js > dev.log 2>&1 &",
+    "stop": "lsof -ti:3030 | xargs kill -9 2>/dev/null || echo 'No server running on port 3030'",
+    "status": "lsof -i :3030 || echo 'No server running on port 3030'",
+    "logs": "tail -f server.log",
+    "open": "open http://localhost:3030"
+  },
+  "keywords": [
+    "law-school",
+    "study-tool",
+    "collaboration",
+    "gamification",
+    "education"
+  ],
+  "author": "Built for Dylan & Katelyn",
+  "license": "MIT",
+  "devDependencies": {},
+  "engines": {
+    "node": ">=14.0.0",
+    "python": ">=3.6.0"
+  }
+}
